@@ -6,6 +6,19 @@ const weather = {
   the_temp: '',
 };
 
+const weatherStateIcons = {
+  sn: 'https://www.metaweather.com/static/img/weather/sn.svg',
+  sl: 'https://www.metaweather.com/static/img/weather/sl.svg',
+  h: 'https://www.metaweather.com/static/img/weather/h.svg',
+  t: 'https://www.metaweather.com/static/img/weather/t.svg',
+  hr: 'https://www.metaweather.com/static/img/weather/hr.svg',
+  lr: 'https://www.metaweather.com/static/img/weather/lr.svg',
+  s: 'https://www.metaweather.com/static/img/weather/s.svg',
+  hc: 'https://www.metaweather.com/static/img/weather/hc.svg',
+  lc: 'https://www.metaweather.com/static/img/weather/lc.svg',
+  c: 'https://www.metaweather.com/static/img/weather/c.svg',
+};
+
 function header(city) {
   return `
   <div class="div-table-row">
@@ -17,6 +30,27 @@ function header(city) {
         <div class="div-table-col"><h5>Wind direction</h5></div>
         <div class="div-table-col"><h5>Temparature (centigrade)</h5></div>             
         </div>`;
+}
+
+function showWeatherCondition(weather) {
+  return `${weather.weather_state_name},${showImage(weather)} `;
+}
+
+function showImage(weather) {
+  return `<img src=
+            "${weatherStateIcons[weather.weather_state_abbr]}" 
+            style="width:32px" 
+            alt="${weather.weather_state_name}" >
+            </img>`;
+}
+
+function showCompass(weather) {
+  return `<div class="compass">
+              <div class="direction">
+                  <p>${weather.wind_direction_compass}</p>
+              </div>
+              <div class="arrow ${weather.wind_direction_compass.toLowerCase()}"></div>
+          </div>`;
 }
 
 function records(weatherRecords) {
@@ -33,9 +67,13 @@ function rowHtml(weather) {
   return `
   <div class="div-table-row">
     <div class="div-table-col">${weather.applicable_date}</div>
-    <div class="div-table-col">${weather.weather_state_name}, ${weather.weather_state_abbr}</div>
-    <div class="div-table-col">${weather.wind_direction}</div>
-    <div class="div-table-col">${weather.temparature}</div>
+    <div class="div-table-col">
+    ${showWeatherCondition(weather)}
+    </div>
+    <div class="div-table-col">
+    ${showCompass(weather)}
+    </div>
+    <div class="div-table-col">${weather.the_temp}</div>
     </div>`;
 }
 
