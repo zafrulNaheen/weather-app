@@ -2,6 +2,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
+
+  .div-table {
+    display: table;
+    width: auto;
+    background-color: #eee;
+    border: 1px solid #666666;
+    border-spacing: 5px; /* cellspacing:poor IE support for  this */
+  }
+  .div-table-row {
+    display: table-row;
+    width: auto;
+    clear: both;
+  }
+  .div-table-col {
+    float: left; /* fix for  buggy browsers */
+    display: table-column;
+    width: 300px;
+    background-color: rgb(241, 236, 236);
+  }
 }
