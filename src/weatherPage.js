@@ -1,11 +1,3 @@
-const weather = {
-  applicable_date: '',
-  weather_state_name: '',
-  weather_state_abbr: '',
-  wind_direction: '',
-  the_temp: '',
-};
-
 const weatherStateIcons = {
   sn: 'https://www.metaweather.com/static/img/weather/sn.svg',
   sl: 'https://www.metaweather.com/static/img/weather/sl.svg',

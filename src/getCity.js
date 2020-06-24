@@ -2,9 +2,10 @@ import axios from 'axios';
 import weatherPage from './weatherPage';
 
 async function getCity() {
-  const res = { data: { city: 'Berlin' } }; //await axios.get('http://ip-api.com/json');
+  const res = await axios.get('http://ip-api.com/json');
   return res.data.city;
 }
+
 let city = '';
 async function cityWoeId(cityParam) {
   if (!cityParam) city = await getCity();
