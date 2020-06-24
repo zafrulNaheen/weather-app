@@ -6,9 +6,9 @@ async function getCity() {
   return res.data.city;
 }
 let city = '';
-async function cityWoeId() {
-  city = await getCity();
-
+async function cityWoeId(cityParam) {
+  if (!cityParam) city = await getCity();
+  else city = cityParam;
   const urlProxy = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search?query=${city}`;
   const res = await axios.get(urlProxy);
   return res.data[0].woeid;
@@ -31,4 +31,21 @@ async function cityWeather() {
   return weatherPage(city, weatherRecords);
 }
 
-export default cityWeather;
+async function cityWeatherBySearch(cityParam, dateParam) {
+  const woeid = await cityWoeId(cityParam);
+  const date =
+    new Date(dateParam).getFullYear().toString() +
+    '/' +
+    new Date(dateParam).getMonth().toString() +
+    '/' +
+    new Date(dateParam).getDate().toString();
+
+  const urlProxy = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/${date}/`;
+
+  const res = await axios.get(urlProxy);
+  const weatherRecords = JSON.parse(JSON.stringify(res.data));
+
+  return weatherPage(city, weatherRecords);
+}
+
+export { cityWeather, cityWeatherBySearch };

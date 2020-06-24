@@ -10,6 +10,18 @@
     <title>Weather app</title>
   </head>
   <body>
-    <div class="page" id="root"></div>
+    <div>
+      <div class="search" id="city-search-weather">
+        <form>
+          <label for="name">City: </label>
+          <input type="text" id="cityName" />
+          <label for="weatherDate">Date: </label>
+          <input type="date" id="weatherDate" />
+          <button type="button" id="searchWeather" ">Submit</button>
+        </form>
+        <br />
+      </div>
+      <div class="page" id="city-weather"></div>
+    </div>
   </body>
 </html>

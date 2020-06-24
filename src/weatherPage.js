@@ -33,7 +33,15 @@ function header(city) {
 }
 
 function showWeatherCondition(weather) {
-  return `${weather.weather_state_name},${showImage(weather)} `;
+  return `${weather.weather_state_name} ${showImage(weather)} `;
+}
+
+function sayHello() {
+  document.getElementById('helloMsg').innerHTML = `Hello, ${
+    document.getElementById('name').value
+  }!`;
+
+  alert(document.getElementById('weatherDate').value);
 }
 
 function showImage(weather) {
